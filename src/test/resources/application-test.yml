@@ -1,0 +1,8 @@
+spring:
+  flyway:
+    user: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  datasource:
+    url: ${DB_URL}&currentSchema=recipebook
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}

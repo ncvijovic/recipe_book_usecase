@@ -1,0 +1,9 @@
+spring:
+  flyway:
+    user: postgres
+    password: postgres
+    schemas: recipebook
+  datasource:
+    url: jdbc:postgresql://localhost:5432/recipebook?currentSchema=recipebook
+    username: postgres
+    password: postgres

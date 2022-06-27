@@ -1,0 +1,31 @@
+version: "3.4"
+services:
+  app:
+    build:
+      context: .
+    container_name: app
+    depends_on:
+      - postgres
+    environment:
+      MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: cache,health,info,metrics,prometheus,env
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/recipebook?currentSchema=recipebook
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILE}
+    ports:
+      - 8080:8080
+  postgres:
+    image: 'postgres:10-alpine'
+    container_name: postgres
+    hostname: primary
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=recipebook
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - type: volume
+        source: postgres_data
+        target: /var/lib/postgresql/data
+
+volumes:
+  postgres_data:

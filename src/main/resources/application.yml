@@ -1,0 +1,30 @@
+logging:
+  level:
+    root: INFO
+
+management:
+  endpoints.web.exposure.include: cache,health,info,metrics,prometheus,env
+
+spring:
+  flyway:
+    schemas: recipebook
+  datasource:
+    hikari:
+      pool-name: HikariCP
+      maximum-pool-size: 100
+      minimum-idle: 10
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        temp.use_jdbc_metadata_defaults: false
+
+  cors:
+    allowedMapping: /**
+    allowedMethods: HEAD, GET, PUT, POST, DELETE, OPTIONS
+    allowedOrigins: '*'
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
